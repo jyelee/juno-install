@@ -13,6 +13,8 @@ Install_Dir()
     fi
 
     mkdir -p /home
+    mkdir -p /home/opt
+    mv ./soft/* /home/opt
     mkdir -p /home/www/system
     mkdir -p /home/www/system/mysql
     mkdir -p /home/www/system/prometheus

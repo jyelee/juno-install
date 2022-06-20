@@ -2,7 +2,7 @@
 
 Install_Juno_Admin()
 {
-    wget -P ${DOWNLOAD_PATH} https://github.com/douyu/juno/releases/download/v${JUNO_VER}/juno_${JUNO_VER}_linux_amd64.tar.gz
+    #wget -P ${DOWNLOAD_PATH} https://github.com/douyu/juno/releases/download/v${JUNO_VER}/juno_${JUNO_VER}_linux_amd64.tar.gz
     tar -xzvf ${DOWNLOAD_PATH}/juno_${JUNO_VER}_linux_amd64.tar.gz -C /home/www/server/juno/
     mv /home/www/server/juno/juno-admin /home/www/server/juno/bin/
     mv /home/www/server/juno/juno-proxy /home/www/server/juno/bin/
@@ -21,7 +21,7 @@ Environment="PATH=$PATH:/home/www/system/go/bin:/home/www/system/pprof/graphviz/
 WorkingDirectory=/home/www/server/juno
 TimeoutSec=0
 PermissionsStartOnly=true
-ExecStart=/home/www/server/juno/bin/juno-admin  --config=/home/www/server/juno/config/single-region-admin.toml
+ExecStart=/home/www/server/juno/bin/juno-admin  --host 0.0.0.0 --config=/home/www/server/juno/config/single-region-admin.toml
 
 LimitNOFILE = 65535
 Restart=on-failure

@@ -5,9 +5,20 @@
 
 [configure]
   dir = "/tmp/www/server"
+  dirs = ["/home/www/.config/juno-agent"] # 配置的本地路径
   prefix = "juno-agent"
   [configure.agent]
     port = 50010
+
+[agent]
+  port = 50010 # agent 端口，用于请求agent判定应用是否接入配置中心
+  secret = "j1Sblr5uiJtuCQLsT89BRqtAgWDO2anI" # agent 秘钥，用于显示应用的实时配置
+
+
+# grafana 相关配置，用于代理请求grafana显示监控信息
+[grafanaProxy]
+  enable = true
+  name = "grafana"
 
 [logger.system]
     debug = false          # 是否在命令行输出
@@ -32,7 +43,7 @@
 [register]
     enable=true
     connectTimeout = "1s"
-    endpoints=["etcd:2379"]
+    endpoints=["127.0.0.1:2379"]
     secure = false
 
 #################################### Server ##############################
@@ -64,7 +75,7 @@
     enable = true
     connMaxLifetime = "300s"
     debug = true
-    dsn = "root:root@tcp(mysql:3306)/juno?charset=utf8&parseTime=True&loc=Local&readTimeout=1s&timeout=1s&writeTimeout=3s"
+    dsn = "root:@tcp(127.0.0.1:3306)/juno?charset=utf8&parseTime=True&loc=Local&readTimeout=1s&timeout=1s&writeTimeout=3s"
     level = "panic"
     maxIdleConns = 50
     maxOpenConns = 100
@@ -73,7 +84,7 @@
 [clientProxy]
 
   [clientProxy.singleProxy.etcd]
-    endpoints = ["etcd:2379"]
+    endpoints = ["127.0.0.1:2379"]
 
 [auth]
     # Login cookie name
